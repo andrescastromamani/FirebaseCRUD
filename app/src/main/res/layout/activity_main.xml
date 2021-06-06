@@ -7,20 +7,48 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btConsultar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Consultar" />
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:inputType="number"
+        android:hint="Id"
+        android:ems="10" android:id="@+id/etId"/>
 
-        <TextView
-            android:id="@+id/tvConsulta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:inputType="textPersonName"
+        android:hint="Nombre" android:ems="10"
+        android:id="@+id/etNombre"/>
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:inputType="textEmailAddress"
+        android:hint="E-mail" android:ems="10"
+        android:id="@+id/etEmail"/>
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/btGuardar"
+        android:text="Guardar"/>
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/btConsultar"
+        android:text="Consultar"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/tvConsulta"/>
+
+</LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

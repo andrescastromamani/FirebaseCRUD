@@ -30,5 +30,26 @@ class MainActivity : AppCompatActivity() {
                     binding.tvConsulta.text = "No se pudo conectar"
                 }
         }
+        binding.btGuardar.setOnClickListener{
+            if (binding.etNombre.text.isNotBlank() &&
+                    binding.etEmail.text.isNotBlank() &&
+                    binding.etId.text.isNotBlank()){
+                val dato = hashMapOf(
+                    //"id" to binding.etId.text.toString(),
+                    "name" to binding.etNombre.text.toString(),
+                    "email" to binding.etEmail.text.toString()
+                )
+                db.collection("friends")
+                    .document(binding.etId.text.toString())
+                    .set(dato)
+                    .addOnSuccessListener { resultado ->
+                        binding.tvConsulta.text = "Agregado correctamente"
+                    }
+                    .addOnFailureListener{ exception ->
+                        binding.tvConsulta.text = "No se pudo Agregar"
+                    }
+
+            }
+        }
     }
 }
