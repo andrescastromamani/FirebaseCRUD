@@ -37,6 +37,17 @@
         android:layout_width="match_parent"
         android:id="@+id/btGuardar"
         android:text="Guardar"/>
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/btModificar"
+        android:text="Modificar"/>
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/btBorrar"
+        android:text="Borrar"/>
 
     <Button
         android:layout_height="wrap_content"

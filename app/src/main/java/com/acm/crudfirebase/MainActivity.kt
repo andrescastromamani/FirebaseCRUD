@@ -9,6 +9,30 @@ import com.google.firebase.firestore.FirebaseFirestore
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
+    fun guardarDatos(db: FirebaseFirestore) {
+        if (binding.etNombre.text.isNotBlank() &&
+            binding.etEmail.text.isNotBlank() &&
+            binding.etId.text.isNotBlank()) {
+
+            val dato = hashMapOf(
+                //"id" to binding.etId.text,
+                "name" to binding.etNombre.text.toString(),
+                "email" to binding.etEmail.text.toString()
+            )
+
+            db.collection("friends")
+                .document(binding.etId.text.toString())
+                .set(dato)
+                .addOnSuccessListener { _ ->
+                    binding.tvConsulta.text = "Procesado correctamente"
+                }
+                .addOnFailureListener { _ ->
+                    binding.tvConsulta.text = "No se ha podido procesar"
+                }
+
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,25 +54,24 @@ class MainActivity : AppCompatActivity() {
                     binding.tvConsulta.text = "No se pudo conectar"
                 }
         }
-        binding.btGuardar.setOnClickListener{
-            if (binding.etNombre.text.isNotBlank() &&
-                    binding.etEmail.text.isNotBlank() &&
-                    binding.etId.text.isNotBlank()){
-                val dato = hashMapOf(
-                    //"id" to binding.etId.text.toString(),
-                    "name" to binding.etNombre.text.toString(),
-                    "email" to binding.etEmail.text.toString()
-                )
+        binding.btGuardar.setOnClickListener {
+            guardarDatos(db)
+        }
+        binding.btModificar.setOnClickListener {
+            guardarDatos(db)
+        }
+        binding.btBorrar.setOnClickListener {
+            if (binding.etId.text.isNotBlank()) {
+
                 db.collection("friends")
                     .document(binding.etId.text.toString())
-                    .set(dato)
-                    .addOnSuccessListener { resultado ->
-                        binding.tvConsulta.text = "Agregado correctamente"
+                    .delete()
+                    .addOnSuccessListener { _ ->
+                        binding.tvConsulta.text = "Borrado correctamente"
                     }
-                    .addOnFailureListener{ exception ->
-                        binding.tvConsulta.text = "No se pudo Agregar"
+                    .addOnFailureListener { _ ->
+                        binding.tvConsulta.text = "No se ha podido borrar"
                     }
-
             }
         }
     }
